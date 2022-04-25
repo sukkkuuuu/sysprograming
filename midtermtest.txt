@@ -1,0 +1,72 @@
+시프 기말고사 문제
+1번
+scanf() 함수의 문제점 : scanf()를 사용하게 될 때 입력 버퍼를 비우지않아서 오류가 발생할 수 있다.
+
+해결방안 : 입력 버퍼를 비워주는 방법
+1. 화이트 스페이스 사용
+2. %*c 사용
+3. getchar()함수 사용
+
+2번
+shell : 운영체제 상에서 다양한 운영체제 기능과 서비스를 구현하는 인터페이스를 제공하는 프로그램
+bash, zsh의 비교 설명
+bash와 zsh shell 둘 다 bourne shell을 기반으로 만들어졌다
+zsh shell이 bash shell 보다 더 많은 기능을 보유하고 있어서 편리하다
+zsh shell 경우에는 현재 디렉토리 뒤에 이동하고 싶은 디렉토리를 적으면 바로 이동되지만
+bash shell 같은 경우에는 뒤로 이동하면서 새로운 디렉토리로 들어가야하는 차이가 있다.
+
+
+
+3번
+프로세스 구조는
+code
+data
+heap
+stack
+U-영역
+영역으로 구성된다
+
+code 영역 : 프로세스가 실행하는 실행코드를 저장하는 영역
+
+data 영역 : 전역 변수 또는 static 변수를 위한 메모리 영역
+
+heap 영역 : 동적 메모리 할당을 위한 영역이다.
+
+stack 영역 : 함수 호출을 구현하기 위한 실행시간 스택을 위한 영역으로 활성 레코드가 저장된다
+
+U-영역(user-area) : 열린 파일 디스크립터, 현재 작업 디렉터리 등과 같은 프로세스의 정보를
+저장하는 영역
+
+4번
+fork() 시스템 호출 : 부모 프로세스를 똑같이 복제하여 새로운 자식 프로세스를 생성하는 것
+#include <stdio.h>
+#include <unistd.h>
+int main(){
+	int pid
+	pid = fork();
+	if(pid ==0){
+		printf("child %d %d\n",getpid(), pid);
+	}
+	else{
+		printf("parent %d %d\n",getpid(), pid);
+	}
+}
+자식 프로세스는 0을 return하고 부모 프로세스는 자식 프로세스의 id를 return 한다.
+	
+
+5번
+컴퓨터 전원을 키고 bios에 저장되어 있는 초기화 프로그램 실행하고 부트로더를 실행하여 커널의 이미지 로딩해서 실행한다.
+swapper라고 불리는 프로세스 id 1인 프로세스가 실행된다. swapper 프로세스는 프로세스 id 1인 init 프로세스를 실행시킨다
+init 프로세스는 /etc/inittab 파일을 참조하여 사용자들을 위해 시스템을 설정한다.
+pid 0의 프로세스에 의해 실행된 init fork() 시스템 콜을 수행하고 fork()에 의해 싱성된 자식 init가 exec() 시스템 콜을 이용해서 getty 프로세스를 실행
+getty 화면에 login : 을 띄우고서 사용자의 userid 입력을 기다리고 입력 받으면 getty /bin/login을 실행시킨다.
+/bin/login은 password : 를 띄우고서 사용자의 password 입력을 기다림. 입력 받으면 /etc/passwd 또는 /etc/shadow 파일과
+일치하는 비교하고 일치하면 최종적으로 exec()를 하여 로그인 쉘을 띄운다
+
+
+6번
+측은지심
+수오지심
+사양지심
+시비지심
+광명지심
